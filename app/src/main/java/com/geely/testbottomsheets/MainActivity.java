@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 
 import static com.geely.testbottomsheets.R.id.bottom_sheet;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CoordinatorLayout coordinatorLayout;
     private RelativeLayout rel_title_back;
@@ -54,12 +54,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.lin_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                behavior.setState(CustomBottomSheetBehavior.STATE_COLLAPSED);
-            }
-        });
+        findViewById(R.id.lin_back).setOnClickListener(this);
+        findViewById(R.id.btn_high).setOnClickListener(this);
+        findViewById(R.id.btn_low).setOnClickListener(this);
     }
 
     @Override
@@ -72,5 +69,35 @@ public class MainActivity extends AppCompatActivity {
             bottomSheet.setLayoutParams(linearParams);
             isSetBottomSheetHeight = true;
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.lin_back:
+                behavior.setState(CustomBottomSheetBehavior.STATE_COLLAPSED);
+                break;
+
+            case R.id.btn_high:
+                behavior.setAnchorPoint(dip2px(150));
+                behavior.refreshAnchor();
+                break;
+
+            case R.id.btn_low:
+                behavior.setAnchorPoint(dip2px(500));
+                behavior.refreshAnchor();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     */
+    public int dip2px(float dpValue) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 }

@@ -147,6 +147,8 @@ public class CustomBottomSheetBehavior<V extends View> extends CoordinatorLayout
 
     private boolean mTouchingScrollingChild;
 
+    private View childView;
+
     /**
      * Default constructor for instantiating BottomSheetBehaviors.
      */
@@ -220,6 +222,8 @@ public class CustomBottomSheetBehavior<V extends View> extends CoordinatorLayout
 //        if (mState == STATE_EXPANDED) {
 //            ViewCompat.offsetTopAndBottom(child, mMinOffset);
 //        } else if (mHideable && mState == STATE_HIDDEN...
+
+        childView = child;
         /**
          * New behavior
          */
@@ -468,6 +472,13 @@ public class CustomBottomSheetBehavior<V extends View> extends CoordinatorLayout
 
     public final void setAnchorPoint(int anchorPoint) {
         mAnchorPoint = anchorPoint;
+    }
+
+    public final void refreshAnchor() {
+        if (childView != null) {
+            int offset = childView.getTop() - mAnchorPoint;
+            ViewCompat.offsetTopAndBottom(childView, -offset);
+        }
     }
 
     public final int getAnchorPoint() {
