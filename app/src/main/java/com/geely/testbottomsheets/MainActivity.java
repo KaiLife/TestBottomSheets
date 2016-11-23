@@ -75,15 +75,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.lin_back:
+                bottomSheet.fullScroll(NestedScrollView.FOCUS_UP);
                 behavior.setState(CustomBottomSheetBehavior.STATE_COLLAPSED);
                 break;
 
             case R.id.btn_high:
+                bottomSheet.fullScroll(NestedScrollView.FOCUS_UP);
                 behavior.setAnchorPoint(dip2px(150));
                 behavior.refreshAnchor();
                 break;
 
             case R.id.btn_low:
+                bottomSheet.fullScroll(NestedScrollView.FOCUS_UP);
                 behavior.setAnchorPoint(dip2px(500));
                 behavior.refreshAnchor();
                 break;
