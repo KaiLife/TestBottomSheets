@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TestBottomSheets</string>
+    <string name="CustomBottomSheetBehavior">com.geely.testbottomsheets.CustomBottomSheetBehavior</string>
+</resources>
