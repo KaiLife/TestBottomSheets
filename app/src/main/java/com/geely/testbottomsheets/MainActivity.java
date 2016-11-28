@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -37,7 +38,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         behavior.addBottomSheetCallback(new CustomBottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, @CustomBottomSheetBehavior.State int newState) {
-
+                switch (newState) {
+                    case CustomBottomSheetBehavior.STATE_COLLAPSED:
+                        Log.d("bottomsheet-", "STATE_COLLAPSED");
+                        break;
+                    case CustomBottomSheetBehavior.STATE_DRAGGING:
+                        Log.d("bottomsheet-", "STATE_DRAGGING");
+                        break;
+                    case CustomBottomSheetBehavior.STATE_EXPANDED:
+                        Log.d("bottomsheet-", "STATE_EXPANDED");
+                        break;
+                    case CustomBottomSheetBehavior.STATE_ANCHOR_POINT:
+                        Log.d("bottomsheet-", "STATE_ANCHOR_POINT");
+                        break;
+                    case CustomBottomSheetBehavior.STATE_HIDDEN:
+                        Log.d("bottomsheet-", "STATE_HIDDEN");
+                        break;
+                    default:
+                        Log.d("bottomsheet-", "STATE_SETTLING");
+                        break;
+                }
             }
 
             @Override
@@ -53,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
+
+//        behavior.setState(CustomBottomSheetBehavior.STATE_ANCHOR_POINT);
 
         findViewById(R.id.lin_back).setOnClickListener(this);
         findViewById(R.id.btn_high).setOnClickListener(this);
