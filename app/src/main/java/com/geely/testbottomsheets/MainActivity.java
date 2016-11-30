@@ -64,9 +64,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
                 if (bottomSheet.getTop() < rel_title_back.getHeight() + behavior.getPeekHeight()) {
                     //设置底栏完全展开时，出现的顶部工具栏的动画
-                    rel_title.setVisibility(View.GONE);
+//                    Log.d("onSlide---", "slideOffset: " + slideOffset);
+                    Log.d("onSlide---", "bottomSheet.getTop(): " + bottomSheet.getTop()
+                            + "  Y:" + (bottomSheet.getTop() - 2 * rel_title.getHeight()));
+                    rel_title.setVisibility(View.VISIBLE);
+                    rel_title.setAlpha(1 - setSlideAlpha(slideOffset));
+                    rel_title.setTranslationY(bottomSheet.getTop() - 2 * rel_title.getHeight());
                     rel_title_back.setVisibility(View.VISIBLE);
-                    rel_title_back.setTranslationY(rel_title_back.getTop() + rel_title_back.getHeight() - bottomSheet.getTop());
+                    rel_title_back.setAlpha(setSlideAlpha(slideOffset));
+                    rel_title_back.setTranslationY(rel_title_back.getHeight() - bottomSheet.getTop());
                 } else {
                     rel_title.setVisibility(View.VISIBLE);
                     rel_title_back.setVisibility(View.GONE);
@@ -79,6 +85,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.lin_back).setOnClickListener(this);
         findViewById(R.id.btn_high).setOnClickListener(this);
         findViewById(R.id.btn_low).setOnClickListener(this);
+    }
+
+    private float setSlideAlpha(float slideOffset) {
+        if (slideOffset < 0.9) {
+            slideOffset = (float) 0.9;
+        }
+
+        if (slideOffset > 1) {
+            slideOffset = 1;
+        }
+
+        return (float) ((slideOffset - 0.9) * 10);
     }
 
     @Override
