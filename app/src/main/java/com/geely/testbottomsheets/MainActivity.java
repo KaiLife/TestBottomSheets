@@ -80,8 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-//        behavior.setState(CustomBottomSheetBehavior.STATE_ANCHOR_POINT);
-
+        behavior.setState(CustomBottomSheetBehavior.STATE_ANCHOR_POINT);
         findViewById(R.id.lin_back).setOnClickListener(this);
         findViewById(R.id.btn_high).setOnClickListener(this);
         findViewById(R.id.btn_low).setOnClickListener(this);

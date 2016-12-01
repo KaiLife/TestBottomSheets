@@ -272,16 +272,6 @@ public class CustomBottomSheetBehavior<V extends View> extends CoordinatorLayout
             case MotionEvent.ACTION_DOWN:
                 int initialX = (int) event.getX();
                 mInitialY = (int) event.getY();
-//                if (mState == STATE_ANCHOR_POINT) {
-//                    mActivePointerId = event.getPointerId(event.getActionIndex());
-//                    mTouchingScrollingChild = true;
-//                } else {
-//                    View scroll = mNestedScrollingChildRef.get();
-//                    if (scroll != null && parent.isPointInChildBounds(scroll, initialX, mInitialY)) {
-//                        mActivePointerId = event.getPointerId(event.getActionIndex());
-//                        mTouchingScrollingChild = true;
-//                    }
-//                }
 
                 View scroll = mNestedScrollingChildRef.get();
                 if (scroll != null && parent.isPointInChildBounds(scroll, initialX, mInitialY)) {
